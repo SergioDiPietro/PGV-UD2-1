@@ -26,4 +26,17 @@ public class Monitor {
         full = (current >= farm.length);
         notifyAll();
     }
+
+    public synchronized String get() throws InterruptedException {
+        while(empty) wait();
+
+        String vegetable = farm[current-1];
+        System.out.println("[ Total de vegetales " + current + "]");
+        current -=1;
+        full = false;
+        empty = (current == 0);
+        notifyAll();
+
+        return vegetable;
+    }
 }
