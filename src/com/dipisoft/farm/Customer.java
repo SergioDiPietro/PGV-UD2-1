@@ -12,11 +12,11 @@ public class Customer extends Thread {
     // Methods
     @Override
     public void run() {
-        String vegetable;
-
         try {
-            vegetable = farm.get();
-            System.out.println("(-) Se ha vendido el vegetal: " + vegetable);
+            farm.get();
+            sleep(1000);
+            System.out.println("!! Se ha vendido 1 vegetal");
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

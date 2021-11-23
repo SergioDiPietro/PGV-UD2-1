@@ -17,25 +17,28 @@ public class Monitor {
     public synchronized void put(String vegetable) throws InterruptedException {
         while (full) wait();
 
-        System.out.println("[ Total de vegetales " + current + "]");
-        // Posible implementación: imprimir representación gráfica del huerto (tabla)
-        // que muestre una tabla con cada posición y cada vegetal
         farm[current] = vegetable;
         current +=1;
         empty = false;
         full = (current >= farm.length);
         notifyAll();
+
+        //System.out.println(">> Vegetales en huerto: " + current);
+        // Posible implementación: imprimir representación gráfica del huerto (tabla)
+        // que muestre una tabla con cada posición y cada vegetal
     }
 
     public synchronized String get() throws InterruptedException {
         while(empty) wait();
 
         String vegetable = farm[current-1];
-        System.out.println("[ Total de vegetales " + current + "]");
+        System.out.println(">> Vendiendo un " + vegetable + "...");
         current -=1;
         full = false;
         empty = (current == 0);
         notifyAll();
+
+        //System.out.println(">> Vegetales en huerto: " + current);
 
         return vegetable;
     }
