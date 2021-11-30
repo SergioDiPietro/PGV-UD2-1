@@ -17,6 +17,10 @@ public class Main {
 
         farmer1.start();
         farmer2.start();
+
+        farmer1.setPriority(Thread.MAX_PRIORITY);
+        farmer2.setPriority(Thread.MAX_PRIORITY);
+
         customer1.start();
         customer2.start();
         customer3.start();
