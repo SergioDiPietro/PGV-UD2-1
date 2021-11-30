@@ -3,7 +3,7 @@ package com.dipisoft.farm;
 public class Monitor {
 
     // Attribs
-    private String farm[];
+    private final String[] farm;
     private int current = 0;
     private boolean full = false;
     private boolean empty = true;
@@ -22,10 +22,6 @@ public class Monitor {
         empty = false;
         full = (current >= farm.length);
         notifyAll();
-
-        //System.out.println(">> Vegetales en huerto: " + current);
-        // Posible implementación: imprimir representación gráfica del huerto (tabla)
-        // que muestre una tabla con cada posición y cada vegetal
     }
 
     public synchronized String get() throws InterruptedException {
@@ -37,8 +33,6 @@ public class Monitor {
         full = false;
         empty = (current == 0);
         notifyAll();
-
-        //System.out.println(">> Vegetales en huerto: " + current);
 
         return vegetable;
     }

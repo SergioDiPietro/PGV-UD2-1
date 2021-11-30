@@ -3,11 +3,13 @@ package com.dipisoft.farm;
 public class Farmer extends Thread {
 
     // Attribs
-    private Monitor farm;
+    private final Monitor farm;
+    private final int producedVegetables;
 
     // Constructors
-    public Farmer(Monitor farm) {
+    public Farmer(Monitor farm, int producedVegetables) {
         this.farm = farm;
+        this.producedVegetables = producedVegetables;
     }
 
     // Methods
@@ -17,14 +19,15 @@ public class Farmer extends Thread {
                 "artichoke","tomato","cucumber","eggplant","carrot","green bean"};
         String vegetable = vegetables[(int)(Math.random() * vegetables.length)];
 
-        try {
-            System.out.println(">> Cultivando " + vegetable + "...");
-            sleep(3000);
-            System.out.println("!! Se ha cultivado 1 " + vegetable);
-            farm.put(vegetable);
-            //sleep(2000 + (int)(Math.random() * 5000));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        for (int i = 0; i < producedVegetables; i++) {
+            try {
+                System.out.println("<< Cultivando " + vegetable + "...");
+                sleep((long) (3000 + Math.random() * 10000));
+                System.out.println("(+) Se ha cultivado 1 " + vegetable);
+                farm.put(vegetable);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
