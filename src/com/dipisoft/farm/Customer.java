@@ -17,7 +17,7 @@ public class Customer extends Thread {
         for (int i = 0; i < requestedVegetables; i++) {
             try {
                 String vegetable = farm.get();
-                sleep(3000);
+                sleep(5000);
                 System.out.println("(-) Se ha vendido 1 " + vegetable);
             } catch (InterruptedException e) {
                 e.printStackTrace();

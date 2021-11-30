@@ -22,7 +22,7 @@ public class Farmer extends Thread {
         for (int i = 0; i < producedVegetables; i++) {
             try {
                 System.out.println("<< Cultivando " + vegetable + "...");
-                sleep((long) (3000 + Math.random() * 10000));
+                sleep((long) (1000 + Math.random() * 1000));
                 System.out.println("(+) Se ha cultivado 1 " + vegetable);
                 farm.put(vegetable);
             } catch (InterruptedException e) {
